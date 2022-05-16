@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../Auth/Login/Login';
+import Login from './Login';
 import Footer from '../Shared/Navbar/Footer/Footer';
 import Banner from './Banner/Banner';
 import Dental from './Dental/Dental';
