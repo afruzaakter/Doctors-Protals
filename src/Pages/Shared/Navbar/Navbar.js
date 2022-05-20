@@ -7,7 +7,8 @@ import auth from '../../../firebase.init';
 const Navbar = () => {
     const [user] = useAuthState(auth);
     const logOut = () => {
-        signOut(auth)
+        signOut(auth);
+        localStorage.removeItem('accessToken')
     }
     const menuItems =
         <>
@@ -20,7 +21,22 @@ const Navbar = () => {
             {
                 user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>
             }
-            <li> {user ? <button onClick={logOut} className='btn btn-ghost'>Sign Out</button> : <NavLink to="/loginauth">Login</NavLink>} </li>
+
+
+            <div className="dropdown dropdown-end">
+                <label tabIndex="0"> <div className="avatar online">
+                    <div className="w-10 rounded-full">
+                        <img src={"https://api.lorem.space/image/face?hash=28212"} alt='profile' />
+
+                    </div>
+                </div></label>
+
+                <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a>Item 1</a></li>
+                    <li> {user ? <button onClick={logOut} className='btn btn-ghost'>Sign Out</button> : <NavLink to="/loginauth">Login</NavLink>} </li>
+                </ul>
+            </div>
+
         </>
 
     return (
@@ -47,7 +63,7 @@ const Navbar = () => {
                 <label for="dashboard-sidebar" tabIndex="0" className="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
-                {/* <label  class="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
+                {/* <label  className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
             </div>
 
         </div>
