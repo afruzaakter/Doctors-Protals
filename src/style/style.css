@@ -1,0 +1,15 @@
+.login-continer{
+    border-radius: 20px;
+    background: #f3e6ee;
+    /* background: #ebd4e2; */
+    box-shadow: 14px 14px 20px #ecf0f3, -14px -14px 20px white; 
+}
+
+.login-container-input{ 
+   color: rgb(56, 57, 57);
+    font-size: 18px;
+    border-radius: 54px;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    box-shadow:  16px 16px 32px #b1b1b1,
+             -16px -16px 32px #ffffff;
+}

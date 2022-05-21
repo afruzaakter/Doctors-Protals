@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Loading from '../../Shared/Loading';
 import { Link , useLocation, useNavigate} from 'react-router-dom';
 import useToken from '../../../hooks/useToken';
+import  '../../../style/style.css';
+import Google from '../../../assets/images/google.png';
 
 const LoginAuth = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -49,32 +51,28 @@ const LoginAuth = () => {
         signInWithEmailAndPassword(data.email, data.password)
     }
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='flex justify-center items-center h-screen '>
 
-            <div className="card w-96 bg-base-100 ">
+            <div className="card w-96  login-continer">
                 <div className="card-body">
-                    <h2 className="text-center text-info text-2xl font-bold">LOGIN</h2>
+                    <h2 className="text-center text-info text-2xl font-bold mb-5">LOGIN</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                       
                     <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                           
-                        </label>
                         <input 
                         type="email"
                          placeholder="Your Email"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input  w-full max-w-xs login-container-input"
                         {...register("email",{
                             required:{
                                 value: true,
-                                message: "Email is Required"
+                                message: "❌ Email is Required"
                             },
                        
                             pattern: {
                               value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                              message: 'Provide a valid Email' 
+                              message: '❌ Provide a valid Email' 
                             }
                           })}
                          />
@@ -86,23 +84,19 @@ const LoginAuth = () => {
                         </label>
                     </div>
                     <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                           
-                        </label>
                         <input 
                         type="password"
                          placeholder="Password"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input  w-full max-w-xs login-container-input"
                         {...register("password",{
                             required:{
                                 value: true,
-                                message: "Password is Required"
+                                message: "❌ Password is Required"
                             },
                         
                             minLength: {
                               value: 6,
-                              message: 'Must be 6 characters or longer' 
+                              message: '❌ Must be 6 characters or longer' 
                             }
                           })}
                          />
@@ -114,11 +108,15 @@ const LoginAuth = () => {
                         </label>
                     </div>
                     {signInError}
-                    <input className='btn w-full max-w-xs' type="submit" value='Login' />  
+                    <input className='btn w-full btn-info text-white text-xl max-w-xs' type="submit" value='Login' />  
                     </form>
                     <p>New to Doctors Portal <Link className='text-info font-bold' to="/signup">Create New Account</Link> </p>
+                    <p>Forgot Password? <Link className='text-info font-bold' to="/reset">Reset Password</Link> </p>
                     <div className="divider">OR</div>
-                    <button onClick={() => signInWithGoogle()} className="btn btn-outline">Continue with Google</button>
+                    <button onClick={() => signInWithGoogle()} 
+                    className="btn btn-info text-white "> 
+                    <img className='mr-4' src={Google} alt="google" />     
+                     Continue with Google</button>
 
                 </div>
             </div>

@@ -5,7 +5,8 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 const BookingModal = ({ treatment, date,setTreatment,refetch }) => {
     const [user] = useAuthState(auth);
-    const {_id, name, slots } = treatment;
+    console.log('kkk user',user)
+    const {_id, name, slots,price} = treatment;
     console.log(treatment);
     const formattedDate = format(date, 'PP');
     const handleBooking = (e) =>{
@@ -17,6 +18,7 @@ const BookingModal = ({ treatment, date,setTreatment,refetch }) => {
             treatment: name,
             date: formattedDate,
             slot,
+            price,
             patient: user.email,
             patientName: user.displayName,
             phone: e.target.phone.value,
@@ -67,7 +69,7 @@ const BookingModal = ({ treatment, date,setTreatment,refetch }) => {
 
                         <input type="text" name="name" disabled value={user?.displayName || ''} className="input  input-bordered w-full max-w-xs" />
                         <input type="email" name="email" disabled value={user?.email || ''} className="input  input-bordered w-full max-w-xs" />
-                        {/* <input type="text" name="password" placeholder="Password" className="input  input-bordered w-full max-w-xs" /> */}
+                        <input type="text" name="price" value={price || ''} className="input  input-bordered w-full max-w-xs" />
                         <input type="text" name="phone" placeholder="Phone Number" className="input  input-bordered w-full max-w-xs" />
                         <input type="submit" value="Submit" className="btn btn-info w-full max-w-xs" />
                     </form>
